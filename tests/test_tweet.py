@@ -26,8 +26,21 @@ def client(data):
   # authenticate Twitter
   return Pytweepy(data)
 
+@pytest.fixture
+def user_id(client, data):
+  #------------
+  # get user id
+  int_id, str_id = client.get_user_id( data["tweet"]["handle"] )
+  return str_id
+
+@pytest.fixture
+def recipient_id(client, data):
+  #-----------------
+  # get recipient id
+  int_id, str_id = client.get_user_id( data["recipient"]["handle"] )
+  return str_id
+
 def test_validate_tweepy_class(client):
-  print( type(client.api) )
   assert type(client.api).__name__ == "API"
 
 def test_validate_twitter_bearer_token(client):
@@ -43,3 +56,9 @@ def test_get_user_id(client, data):
   int_id, str_id = client.get_user_id( data["tweet"]["handle"] ) 
   assert int_id > 0
   assert int_id == int(str_id)
+
+def test_get_user_timeline_items(client, user_id, recipient_id):
+  dic_tweet = client.get_user_timeline_items(user_id, 1)
+  assert 'id', 'text' in dic_tweet
+  dic_tweet = client.get_user_timeline_items(recipient_id, 1)
+  assert 'id', 'text' in dic_tweet

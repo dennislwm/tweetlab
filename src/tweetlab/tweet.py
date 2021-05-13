@@ -33,10 +33,39 @@ class Pytweepy():
   |----------+---------+---------+---------+---------+---------+---------+---------+-------"""
 
   def get_user_id(self, str_screen_name):
+    """Get Twitter user id
+
+    Parameters:
+    str_screen_name (str): Twitter user handle (screen name)
+
+    Returns:
+    int, str: Twitter user id
+    """
     obj_user = self.api.get_user(screen_name = str_screen_name)
     return obj_user.id, obj_user.id_str
 
+  def get_user_timeline_items(self, str_user_id, int_items=1):
+    """Get tweets of user
+
+    Parameters:
+    str_user_id (str): Twitter user id
+    int_items (int): number of tweet items Default=1 (All=0)
+
+    Returns:
+    dictionary: dict(id, text)
+    """
+    timeline = tweepy.Cursor(self.api.user_timeline).items(int_items)
+    return [dict(id=tweet.id, text=tweet.text) for tweet in timeline]
+
   def send_dm(self, data):
+    """Send a direct message to recipient
+
+    Parameters:
+    data (ruamel.yaml.comments.CommentedMap): data consists of recipient information
+
+    Returns:
+    NA
+    """
     recipient_id, recipient_id_str = self.get_user_id( data["recipient"]["handle"] )
     try:
       self.api.send_direct_message(
