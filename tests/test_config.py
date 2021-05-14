@@ -43,4 +43,3 @@ def test_load_without_tweet(yaml):
 
 def test_load_without_recipient(yaml):
   assert yaml["recipient"]["handle"]
-  assert yaml["recipient"]["body"]

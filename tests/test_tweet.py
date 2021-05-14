@@ -58,7 +58,14 @@ def test_get_user_id(client, data):
   assert int_id == int(str_id)
 
 def test_get_user_timeline_items(client, user_id, recipient_id):
-  dic_tweet = client.get_user_timeline_items(user_id, 1)
+  dic_tweet = client.get_user_timeline_items(user_id, 5)
+  print("\n")
+  for tweet in dic_tweet:
+    print(tweet)
   assert 'id', 'text' in dic_tweet
   dic_tweet = client.get_user_timeline_items(recipient_id, 1)
   assert 'id', 'text' in dic_tweet
+
+def test_create_tweet(client, data):
+  print ( f"len: { len(data['tweet']['status']) } " )
+  assert len( data["tweet"]["status"] ) <= 280

@@ -32,6 +32,17 @@ class Pytweepy():
   |                                C L A S S   R E Q U E S T S                               |
   |----------+---------+---------+---------+---------+---------+---------+---------+-------"""
 
+  def create_tweet(self, str_text):
+    """Create and post a new tweet
+
+    Parameters:
+    str_text (str): The text of your tweet
+
+    Returns:
+    int: Status (tweet) id
+    """
+    self.api.update_status(str_text)
+
   def get_user_id(self, str_screen_name):
     """Get Twitter user id
 

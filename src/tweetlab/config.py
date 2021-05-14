@@ -34,6 +34,7 @@ def create_file(filename):
       access_token_secret: ""      
     tweet:
       handle: ""
+      status: ""
     recipient:
       handle: ""
       body: ""
@@ -46,8 +47,9 @@ def create_file(filename):
   data["twitter"]["access_token"]         = getpass("Enter twitter access token (required): ")
   data["twitter"]["access_token_secret"]  = getpass("Enter twitter access secret token (required): ")
   data["tweet"]["handle"]                 = input("Enter tweet handle (required): ")
+  data["tweet"]["status"]                 = input_multi_line_str("Enter tweet status (required type '|' for multi line): ")
   data["recipient"]["handle"]             = input("Enter recipient handle (required): ")
-  data["recipient"]["body"]               = input_multi_line_str("Enter tweet body (required type '|' for multi line): ")
+  data["recipient"]["body"]               = input_multi_line_str("Enter recipient body (required type '|' for multi line): ")
 
   with open(filename, 'w') as file:
     yaml.dump(data, file)

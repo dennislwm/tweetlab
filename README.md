@@ -35,8 +35,9 @@ Create a CLI tool that we can use to easily send a tweet via `tweepy`. The CLI c
 4. twitter access_token
 5. twitter access_token_secret
 6. tweet handle
-7. recipient handle
-8. recipient body (type | for multi line)
+7. tweet status (optional: type | for multi line)
+8. recipient handle
+9. recipient body (optional: type | for multi line)
 
 ### Creating a config file
 
@@ -53,6 +54,7 @@ twitter:
   access_token_secret: "<your_twitter_access_token_secret>"
 tweet:
   handle: "<your_twitter_handle>"
+  status: ""
 recipient:
   handle: "<recipient_twitter_handle>"
   body: "hello, world\n\n\
@@ -142,6 +144,7 @@ twitter:
   access_token_secret: ""
 tweet:
   handle: ""
+  status: ""
 recipient:
   handle: ""
   body: "hello, world\n\n\
