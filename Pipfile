@@ -7,6 +7,7 @@ name = "pypi"
 "ruamel.yaml" = "*"
 tweepy = "*"
 flask = "*"
+typer = "*"
 
 [requires]
 python_version = "3.6"
