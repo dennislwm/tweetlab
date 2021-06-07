@@ -8,6 +8,7 @@ name = "pypi"
 tweepy = "*"
 flask = "*"
 typer = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.6"
